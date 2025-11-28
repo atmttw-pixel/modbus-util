@@ -55,7 +55,6 @@ public class ModbusController {
         try {
             // 获取 ModbusMaster 实例
             master = getMaster(ip, port);
-//            int i = offset  -1;
             // 执行写入操作
             ModbusClient.writeHoldingRegister(slaveId, offset, type, value, master);
             return new ResponseDto(200,String.format("xchenggong Holding Register: SlaveId=%d, Offset=%d, Value=%d", slaveId, offset, value));
