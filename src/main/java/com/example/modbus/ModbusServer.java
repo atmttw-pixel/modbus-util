@@ -29,7 +29,6 @@ public class ModbusServer implements ApplicationRunner{
         try {
             System.out.println("salve启动成功");
             salve.start();
-//            System.out.println("salve.start();");
         } catch (Exception e) {
             e.printStackTrace();
         }
