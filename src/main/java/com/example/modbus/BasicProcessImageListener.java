@@ -10,7 +10,7 @@ public class BasicProcessImageListener implements ProcessImageListener {
 
     @Override
     public void holdingRegisterWrite(int offset, short oldValue, short newValue) {
-//       System.out.println("Register at " + offset + "," + "change " + oldValue + " to " + newValue);
+
     }
 
 }
