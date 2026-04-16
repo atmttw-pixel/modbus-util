@@ -64,7 +64,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- 单元测试和 Spring Boot 上下文测试依赖。 -->
+        <!-- 单元测试和 Spring Boot 上下文测试依赖打撒大。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
