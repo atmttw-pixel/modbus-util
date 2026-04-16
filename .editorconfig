@@ -1,0 +1,10 @@
+root = true
+
+[*]
+# 固定 UTF-8，避免中文注释在不同 IDE 或系统默认编码下乱码。
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+
+[*.cmd]
+end_of_line = crlf
