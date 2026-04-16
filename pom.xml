@@ -12,7 +12,7 @@
     <artifactId>modbus</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>modbus</name>
-    <description>modbus</description>
+    <description>Modbus collection and simulator utility</description>
     <url/>
     <licenses>
         <license/>
@@ -28,34 +28,43 @@
     </scm>
     <properties>
         <java.version>17</java.version>
+        <!-- 统一源码和报告编码，避免中文注释在不同环境下乱码。 -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-    <dependencies>
 
-        <dependency>
-            <groupId>com.mysql</groupId>
-            <artifactId>mysql-connector-j</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+    <!-- modbus4j 3.0.3 的发布仓库，中央仓库/镜像拿不到 POM 时仍可解析依赖。 -->
+    <repositories>
+        <repository>
+            <id>ias-release</id>
+            <url>https://maven.mangoautomation.net/repository/ias-release/</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <!-- Modbus TCP/RTU 基础通信库。 -->
         <dependency>
             <groupId>com.infiniteautomation</groupId>
             <artifactId>modbus4j</artifactId>
             <version>3.0.3</version>
         </dependency>
+        <!-- modbus4j 运行时会用到；显式声明可避免换机器后传递依赖丢失。 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
-            <version>3.12.0</version> <!-- 或者使用最新版本 -->
         </dependency>
+        <!-- 提供 HTTP API，方便通过 curl/浏览器调用采集功能。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>2.6.0</version>
         </dependency>
+        <!-- 让 IDE 能识别 application.yml 中 modbus.* 配置项。 -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
+        <!-- 单元测试和 Spring Boot 上下文测试依赖。 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
@@ -68,14 +77,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
             </plugin>
         </plugins>
     </build>

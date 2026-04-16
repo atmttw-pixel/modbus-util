@@ -1,36 +1,33 @@
-# ModbusUtil
+# modbus-util
 
-#### Description
-{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}
+Modbus TCP collection and local simulator utility.
 
-#### Software Architecture
-Software architecture description
+## Raw binary collection
 
-#### Installation
+Modbus does not expose a standalone binary stream function. Binary payloads from devices are usually split across continuous registers. Read the raw register block first, then decode it according to the vendor point table or protocol.
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+```bash
+curl "http://localhost:7770/modbus/raw/registers?ip=192.168.0.61&port=502&slaveId=1&functionCode=3&offset=0&quantity=8&byteOrder=BIG_ENDIAN"
+```
 
-#### Instructions
+The response includes unsigned register values, expanded bytes, HEX, Base64, ASCII preview, and binary strings.
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+## Local simulator
 
-#### Contribution
+The simulator is disabled by default. Enable it in `application.yml` only for local testing:
 
-1.  Fork the repository
-2.  Create Feat_xxx branch
-3.  Commit your code
-4.  Create Pull Request
+```yaml
+modbus:
+  simulator:
+    enabled: true
+    port: 5050
+    slave-id: 1
+    register-count: 20
+```
 
+## Run
 
-#### Gitee Feature
-
-1.  You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2.  Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3.  Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4.  The most valuable open source project [GVP](https://gitee.com/gvp)
-5.  The manual of Gitee [https://gitee.com/help](https://gitee.com/help)
-6.  The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+```bash
+./mvnw test
+./mvnw spring-boot:run
+```

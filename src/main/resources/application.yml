@@ -1,5 +1,19 @@
-
 server:
+  # HTTP 服务端口，所有 /modbus 接口都从这个端口访问。
   port: 7770
 
-
+modbus:
+  client:
+    # 单次 Modbus 请求超时时间，单位毫秒。
+    timeout: 3000
+    # 请求失败后的重试次数。
+    retries: 1
+  simulator:
+    # 默认关闭本地模拟从站，避免生产环境启动时占用 5050 端口。
+    enabled: false
+    # 本地模拟从站监听端口，仅 enabled=true 时生效。
+    port: 5050
+    # 本地模拟从站 ID。
+    slave-id: 1
+    # 模拟寄存器、线圈、输入位的初始化数量。
+    register-count: 20
